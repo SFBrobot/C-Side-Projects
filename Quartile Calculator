@@ -1,0 +1,85 @@
+/*
+Step 1: Learn Number of Entries
+Step 2: Accept Entries
+Step 3: Bubble Sort Entries
+Step 4: Find Median
+  Step 4a: Find Middle
+    Step 4ai: If even number of entries, find middle 2 and average
+Step 5: Find Lower Median
+  Step 5a: If even number of entries, include lower number averaged for median
+Step 6: Find Upper Median
+  Step 6a: If even number of entries, include larger number averaged for median
+*/
+
+#include <cmath>
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  char input;
+  bool ordered;
+  int entryNum,
+    medianNum,
+    lowerMedNum,
+    upperMedNum;
+  float entry[20],
+    bubble,
+    median,
+    lowerMedian,
+    upperMedian;
+
+  cout << "How many entries do you have?\n";
+  cin >> entryNum;
+
+  for(int i = 0; i < entryNum; i++) {
+    cout << "Entry number " << i+1 << "\n";
+    cin >> entry[i];
+  }  
+
+  do {
+    ordered = true;
+    for(int i = 0; i < entryNum-1; i++) {
+      if(entry[i] > entry[i+1]) {
+        bubble = entry[i];
+        entry[i] = entry[i+1];
+        entry[i+1] = bubble;
+        ordered = false;
+      }
+    }
+  } while(!ordered);
+
+  for(int i = 0; i < entryNum; i++) {
+    cout << entry[i] << "\n";
+  }
+
+  medianNum = ceil(entryNum/2);
+
+  lowerMedNum = ceil(entryNum/4);
+
+  upperMedNum = ceil(3*entryNum/4);
+
+  if(medianNum == entryNum/2)
+    median = (entry[medianNum-1] + entry[medianNum]) / 2;
+
+  else
+    median = entry[medianNum];
+
+  if(lowerMedNum == entryNum/4)
+    lowerMedian = (entry[lowerMedNum-1] + entry[lowerMedNum]) / 2;
+
+  else
+    lowerMedian = entry[lowerMedNum];
+
+  if(upperMedNum == 3*entryNum/4)
+    upperMedian = (entry[upperMedNum-1] + entry[upperMedNum]) / 2;
+
+  else
+    upperMedian = entry[upperMedNum];
+
+  cout << "Q1: " << lowerMedian << "\n";
+
+  cout << "Median: " << median << "\n";
+
+  cout << "Q3: " << upperMedian << "\n";
+}
