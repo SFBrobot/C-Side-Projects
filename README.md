@@ -1,2 +1,2 @@
 # C-Side-Projects
-This is for side projects in C.
+This is for side projects in C++.
